@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shareluntan.xuefeng.generator.TopicMapper">
+  <resultMap id="BaseResultMap" type="com.shareluntan.xuefeng.generator.Topic">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_user" jdbcType="INTEGER" property="idUser" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="img" jdbcType="LONGVARBINARY" property="img" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, id_user, category, title, created_date
+  </sql>
+  <sql id="Blob_Column_List">
+    content, img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from topic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByCategory" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select *
+    from topic
+    where category = #{category,jdbcType=VARCHAR}
+    order by created_date Desc
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from topic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs" useGeneratedKeys="true">
+    insert into topic (id_user, category, title, 
+      created_date, content, img
+      )
+    values (#{idUser,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, #{img,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs" useGeneratedKeys="true">
+    insert into topic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idUser != null">
+        id_user,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idUser != null">
+        #{idUser,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
+    update topic
+    <set>
+      <if test="idUser != null">
+        id_user = #{idUser,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
+    update topic
+    set id_user = #{idUser,jdbcType=INTEGER},
+      category = #{category,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR},
+      img = #{img,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shareluntan.xuefeng.generator.Topic">
+    update topic
+    set id_user = #{idUser,jdbcType=INTEGER},
+      category = #{category,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

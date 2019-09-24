@@ -30,7 +30,7 @@ public class UserController {
             boolean login = loginservice.login(id, password);
 
             if (login) {
-                return "success.html";
+                return "action.html";
             }
             return "fail.html";
 

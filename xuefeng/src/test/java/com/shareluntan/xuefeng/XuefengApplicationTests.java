@@ -15,34 +15,12 @@ import java.util.Date;
 @SpringBootTest
 public class XuefengApplicationTests {
 
-    @Resource
-    UserLoginServiceImpl service;
-
-    @Resource
-    UserMapper userMapper;
 
     @Test
     public void contextLoads() {
 
     }
 
-    @Test
-    public void logintest() {
 
-       int  id = 10000;
-        boolean b = service.login(id,"123456");
-        if(b) {
-            System.out.println("success");
-        }else {
-            System.out.println("fail");
-        }
-    }
-    @Test
-    public void registertest() {
-        User user = new User(new java.sql.Date(new Date().getTime()),"","123","456");
-       userMapper.insert(user);
-        Integer id = user.getId();
-        System.out.println(id);
-    }
 
 }
