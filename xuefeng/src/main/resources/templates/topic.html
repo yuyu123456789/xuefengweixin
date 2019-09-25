@@ -34,6 +34,7 @@
                                     <div class="chip" th:text="${topic.getUser().getUsername()}">Topic's author</div>
                                 </a>
                             </td>-->
+                            <td th:text="${topic.username}">Topic's content</td>
                             <td th:text="${topic.content}">Topic's content</td>
                             <td th:text="${topic.createdDate}">Topic's created date</td>
                             <!--<td>
@@ -50,7 +51,10 @@
     </article>
 </main>
 
+</br>
+</br>
 
+<a href="/addtopic.html">发表我的文章</a>
 
 
 

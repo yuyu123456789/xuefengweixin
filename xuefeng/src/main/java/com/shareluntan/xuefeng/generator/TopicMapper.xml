@@ -8,10 +8,14 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
   </resultMap>
+
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
     <result column="img" jdbcType="LONGVARBINARY" property="img" />
   </resultMap>
+
+
+
   <sql id="Base_Column_List">
     id, id_user, category, title, created_date
   </sql>
@@ -142,4 +146,24 @@
       created_date = #{createdDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--topic表联结查询user表，写了发现没用
+  <resultMap id="ResultMapTopicVO" type="com.shareluntan.xuefeng.model.TopicVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_user" jdbcType="INTEGER" property="idUser" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <association property="User" javaType="com.shareluntan.xuefeng.generator.User">
+      <id property="idUser" column="id" />
+      <result property="username" column="username" />
+    </association>
+  </resultMap>-->
+
+  <select id="selectTopicVOByCategory" resultType="com.shareluntan.xuefeng.model.TopicVO"  parameterType="java.lang.String">
+    select topic.id, category, title, topic.created_date, username, content, img
+    from topic join user
+    on category = #{category,jdbcType=VARCHAR} and topic.id_user=user.id
+    order by created_date Desc
+  </select>
 </mapper>

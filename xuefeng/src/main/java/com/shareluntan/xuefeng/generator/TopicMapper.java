@@ -2,6 +2,7 @@ package com.shareluntan.xuefeng.generator;
 
 import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
+import com.shareluntan.xuefeng.model.TopicVO;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface TopicMapper {
 
     List<TopicWithBLOBs> selectByCategory(String category);
 
+    List<TopicVO> selectTopicVOByCategory(String category);
 }

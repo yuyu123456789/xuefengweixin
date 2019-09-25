@@ -1,12 +1,15 @@
 package com.shareluntan.xuefeng.service;
 
+import com.shareluntan.xuefeng.config.DozerUtils;
 import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.generator.TopicMapper;
 import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
+import com.shareluntan.xuefeng.model.TopicVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,13 +20,20 @@ public class TopicServiceImpl implements TopicService{
     TopicMapper topicMapper;
 
     @Override
-    public List<TopicWithBLOBs> AllTopic() {
+    public List<TopicVO> AllTopic() {
      return null;
     }
 
     @Override
-    public List<TopicWithBLOBs> SomeTopic(String category) {
-        return  topicMapper.selectByCategory(category);
+    public List<TopicVO> SomeTopic(String category) {
+        return topicMapper.selectTopicVOByCategory(category);
+    }
+
+    @Override
+    public boolean addTopic(Integer userId,String category,String title,String content,byte[] img) {
+        TopicWithBLOBs topicWithBLOBs = new TopicWithBLOBs(userId,category,new java.sql.Date(new Date().getTime()),title,content,img);
+        int insert = topicMapper.insert(topicWithBLOBs);
+        return insert == 1 ? true : false;
     }
 
 

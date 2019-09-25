@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class UserController {
@@ -19,22 +22,28 @@ public class UserController {
     UserLoginServiceImpl loginservice;
 
     @GetMapping("/login")
-    public String UserLogin(Integer id, String password, Model model) {
+    public String UserLogin(Integer id, String password, Model model, HttpSession session) {
         System.out.println("用户登陆");
         if (id == null || password == null || id.equals("") || password.equals("")) {
             ResponseClass error1 = ResponseClass.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的账号或密码是null或者为空"));
             model.addAttribute("code", error1.getCode());
             model.addAttribute("message", error1.getMessage());
             return "fail.html";
-        }else {
-            boolean login = loginservice.login(id, password);
-
-            if (login) {
-                return "action.html";
-            }
-            return "fail.html";
-
         }
+        boolean login = loginservice.login(id, password);
+
+        if (!login) {
+            ResponseClass error1 = ResponseClass.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的账户或者密码错误"));
+            model.addAttribute("code", error1.getCode());
+            model.addAttribute("message", error1.getMessage());
+            return "fail.html";
+        }else {
+            session.setAttribute("userId", id);
+            session.setAttribute("password", password);
+            return "action.html";
+            }
+
+
     }
 
     @GetMapping("/register")

@@ -2,6 +2,7 @@ package com.shareluntan.xuefeng.generator;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * topic
@@ -27,6 +28,14 @@ public class TopicWithBLOBs extends Topic implements Serializable {
     }
 
     public void setImg(byte[] img) {
+        this.img = img;
+    }
+
+    private TopicWithBLOBs(){};
+
+    public TopicWithBLOBs(Integer idUser,String category,Date date,String title,String content, byte[] img) {
+        super(idUser,category,title,date);
+        this.content = content;
         this.img = img;
     }
 
