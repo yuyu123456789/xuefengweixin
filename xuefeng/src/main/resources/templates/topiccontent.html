@@ -24,14 +24,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                  <!--   <div th:text="${answer.topic.title}"></div>
-                     <div th:text="${answer.topic.username}"></div>
-                     <div th:text="${answer.topic.createdDate}"></div>-->
+
+                    <form id="topic">
+                        <input id="content" name="content" th:value="${topic.content}"/>
+                        <input id="username" name="username" th:value="${username}"/>
+                        <input id="title" name="title" th:value="${topic.getTitle()}"/>
+                    </form>
 
                     <th:block th:each="answer : ${answer}">
                         <tr>
                             <td th:text="${answer.content}"></td>
                             <td th:text="${answer.createdDate}"></td>
+                            <td th:text="${answer.username}"></td>
                         </tr>
                     </th:block>
                     </tbody>

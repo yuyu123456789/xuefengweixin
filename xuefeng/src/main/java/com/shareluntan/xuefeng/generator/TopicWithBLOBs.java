@@ -31,6 +31,11 @@ public class TopicWithBLOBs extends Topic implements Serializable {
         this.img = img;
     }
 
+
+    public String getTitle()  {return  super.getTitle(); }
+    public void setTitle(String title)  {super.setTitle(title);}
+
+
     private TopicWithBLOBs(){};
 
     public TopicWithBLOBs(Integer idUser,String category,Date date,String title,String content, byte[] img) {

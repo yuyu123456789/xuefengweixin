@@ -23,8 +23,4 @@ public class AnswerVO {
   //谁发表的评论
     private String username;
 
-
-  //根据文章id找到文章
-    private TopicWithBLOBs topic;
-
 }

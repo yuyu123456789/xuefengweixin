@@ -1,5 +1,6 @@
 package com.shareluntan.xuefeng.service;
 
+import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.generator.TopicMapper;
 import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
 import com.shareluntan.xuefeng.model.TopicVO;
@@ -31,6 +32,16 @@ public class TopicServiceImpl implements TopicService{
         TopicWithBLOBs topicWithBLOBs = new TopicWithBLOBs(userId,category,new java.sql.Date(new Date().getTime()),title,content,img);
         int insert = topicMapper.insert(topicWithBLOBs);
         return insert == 1 ? true : false;
+    }
+
+    @Override
+    public TopicWithBLOBs selectTopicByTopicId(Integer topicid) {
+        return topicMapper.selectByPrimaryKey(topicid);
+    }
+
+    @Override
+    public String selectUsernameByTopicId(Integer topicid) {
+      return topicMapper.selectUsernameByTopicId(topicid);
     }
 
 

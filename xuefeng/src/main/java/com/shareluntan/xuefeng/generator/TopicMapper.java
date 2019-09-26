@@ -21,6 +21,8 @@ public interface TopicMapper {
 
     int updateByPrimaryKey(Topic record);
 
+    String selectUsernameByTopicId(Integer iduser);
+
 //    List<TopicWithBLOBs> selectByCategory(String category);
 
     List<TopicVO> selectTopicVOByCategory(String category);

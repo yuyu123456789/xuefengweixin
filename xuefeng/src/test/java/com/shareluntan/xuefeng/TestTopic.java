@@ -63,7 +63,11 @@ public class TestTopic {
         System.out.println(b);
     }
 
-
+    @Test
+    public void testaddtopic3(){
+        String s = topicMapper.selectUsernameByTopicId(1);
+        System.out.println(s);
+    }
     
     
     

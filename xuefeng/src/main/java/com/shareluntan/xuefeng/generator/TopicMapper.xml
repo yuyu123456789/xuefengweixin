@@ -167,4 +167,9 @@
     order by created_date Desc
   </select>
 
+  <select id = "selectUsernameByTopicId" resultType="java.lang.String" parameterType="java.lang.Integer">
+    select username
+  from topic , user
+  where topic.id_user=user.id and topic.id= #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

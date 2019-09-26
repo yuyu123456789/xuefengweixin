@@ -12,5 +12,6 @@ public interface TopicService {
     List<TopicVO> AllTopic();
     List<TopicVO> SomeTopic(String category);
     boolean addTopic(Integer userId,String category,String title,String content,byte[] img );
-
+    TopicWithBLOBs selectTopicByTopicId(Integer topicid);
+    String selectUsernameByTopicId(Integer topicid);
 }
