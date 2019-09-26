@@ -1,11 +1,8 @@
 package com.shareluntan.xuefeng.service;
 
-import com.shareluntan.xuefeng.config.DozerUtils;
-import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.generator.TopicMapper;
 import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
 import com.shareluntan.xuefeng.model.TopicVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

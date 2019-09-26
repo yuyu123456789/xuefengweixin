@@ -21,7 +21,9 @@ public interface TopicMapper {
 
     int updateByPrimaryKey(Topic record);
 
-    List<TopicWithBLOBs> selectByCategory(String category);
+//    List<TopicWithBLOBs> selectByCategory(String category);
 
     List<TopicVO> selectTopicVOByCategory(String category);
+
+//    List<String> selectTitleByCategory(String category);
 }

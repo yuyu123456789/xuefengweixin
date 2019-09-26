@@ -1,4 +1,4 @@
-package com.shareluntan.xuefeng.config;
+package com.shareluntan.xuefeng.utils;
 
 import com.google.common.collect.Lists;
 import org.dozer.DozerBeanMapper;

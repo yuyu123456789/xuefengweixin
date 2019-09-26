@@ -166,4 +166,5 @@
     on category = #{category,jdbcType=VARCHAR} and topic.id_user=user.id
     order by created_date Desc
   </select>
+
 </mapper>

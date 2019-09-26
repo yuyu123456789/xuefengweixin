@@ -28,15 +28,16 @@
                     <th:block th:each="topic : ${topics}">
                         <tr>
                             <!--<td th:text="${answerDao.countAnswersByTopic_Id(topic.getId())}">Number of answers</td>-->
-                            <td th:text="${topic.title}">Topic's title</td>
-                            <!--<td>
-                                <a th:href="@{'/profile/' + ${topic.getUser().getId()}}">
-                                    <div class="chip" th:text="${topic.getUser().getUsername()}">Topic's author</div>
+                            <!--<td th:text="${topic.title}"></td>-->
+
+
+                            <td>
+                                <a th:href="'/answer/' + ${topic.id}">
+                                    <div class="chip" th:text="${topic.title}"></div>
                                 </a>
-                            </td>-->
-                            <td th:text="${topic.username}">Topic's content</td>
-                            <td th:text="${topic.content}">Topic's content</td>
-                            <td th:text="${topic.createdDate}">Topic's created date</td>
+                            </td>
+                            <td th:text="${topic.username}"></td>
+                            <td th:text="${topic.createdDate}"></td>
                             <!--<td>
                                 <a th:href="@{'/topic/' + ${topic.getId()}}" class="btn btn-floating pulse">
                                     <i class="material-icons">arrow_forward</i>

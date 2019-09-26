@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<main>
+    <article class="container" style="padding: 3% 0 2%;">
+        <!-- <header class="row">
+             <blockquote class="flow-text left" th:text="${header}">Header</blockquote>
+             <blockquote class="flow-text right" th:text="|Topics: | + ${topics.size()}">Number of topics</blockquote>
+         </header>-->
+        <section class="row">
+            <div class="col s12">
+                    <thead>
+                    <tr>
+                        <th>Answers</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Created</th>
+                        <th>Enter</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                  <!--   <div th:text="${answer.topic.title}"></div>
+                     <div th:text="${answer.topic.username}"></div>
+                     <div th:text="${answer.topic.createdDate}"></div>-->
+
+                    <th:block th:each="answer : ${answer}">
+                        <tr>
+                            <td th:text="${answer.content}"></td>
+                            <td th:text="${answer.createdDate}"></td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </article>
+</main>
+
+</br>
+</br>
+
+<a href="/addtopic.html">发表我的文章</a>
+
+
+
+</body>
+</html>
