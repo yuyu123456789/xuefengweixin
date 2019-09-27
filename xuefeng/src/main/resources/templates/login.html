@@ -3,20 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/login/login.css">
+    <script type="text/javascript" src="/login/login.js"></script>
+    <script type="text/javascript" src="/jquery.min.js"></script>
     <title>登陆界面</title>
-    <link rel="stylesheet" href="/login.css">
+    <script type="text/javascript">
+        $(function(){
+            $("#login").click(login);
+        })
+    </script>
 </head>
 <body>
 <div class="container">
 
-     导航
-    <div class="nav">
-        <ul>
-            <!--<li><a href="#">链接三</a></li>
-            <li><a href="#">链接二</a></li>-->
-            <li><a href="/index.html">关于我们</a></li>
-        </ul>
-    </div>
+    <li><a href="/index.html">关于我们</a></li>
+
 
     <!-- 主体内容 （登陆界面）-->
     <div class="main">
@@ -28,13 +29,13 @@
         <!-- 右侧登陆界面 -->
         <div class="sideright">
             <div class="index">
-                <form action="/login" method="get">
+                <form>
                     <p class="headline">用户登陆</p>
                     <p class="astyle">账号：</p>
-                    <input type="text" name="id" placeholder="请输入账号">
+                    <input type="text" id = "id" name="id" placeholder="请输入账号">
                     <p class="astyle">密码：</p>
-                    <input type="password" name="password" placeholder="请输入密码">
-                    <input type="submit" value="登陆" name="login" >
+                    <input type="password" id = "password" name="password" placeholder="请输入密码">
+                    <input type="submit" value="登陆" id = "login" name="login" >
                     </br>
 
                     </br>

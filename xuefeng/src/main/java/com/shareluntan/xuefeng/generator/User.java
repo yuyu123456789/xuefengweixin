@@ -25,6 +25,8 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private User(){}
+
     public User(Date createdDate, String email, String password, String username) {
         this.createdDate = createdDate;
         this.email = email;

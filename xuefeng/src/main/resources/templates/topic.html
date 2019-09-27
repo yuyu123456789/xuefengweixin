@@ -27,10 +27,6 @@
                     <tbody>
                     <th:block th:each="topic : ${topics}">
                         <tr>
-                            <!--<td th:text="${answerDao.countAnswersByTopic_Id(topic.getId())}">Number of answers</td>-->
-                            <!--<td th:text="${topic.title}"></td>-->
-
-
                             <td>
                                 <a th:href="'/answer/' + ${topic.id}">
                                     <div class="chip" th:text="${topic.title}"></div>

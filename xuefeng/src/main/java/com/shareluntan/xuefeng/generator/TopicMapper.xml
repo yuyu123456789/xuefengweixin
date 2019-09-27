@@ -7,31 +7,26 @@
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
-  </resultMap>
-
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
     <result column="img" jdbcType="LONGVARBINARY" property="img" />
   </resultMap>
 
 
 
+
+
   <sql id="Base_Column_List">
-    id, id_user, category, title, created_date
+    id, id_user, category, title, created_date,content, img
   </sql>
-  <sql id="Blob_Column_List">
-    content, img
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from topic
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByCategory" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByCategory" parameterType="java.lang.String" resultMap="BaseResultMap">
     select *
     from topic
     where category = #{category,jdbcType=VARCHAR}
@@ -53,7 +48,7 @@
     delete from topic
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shareluntan.xuefeng.generator.Topic" useGeneratedKeys="true">
     insert into topic (id_user, category, title, 
       created_date, content, img
       )
@@ -61,7 +56,7 @@
       #{createdDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, #{img,jdbcType=LONGVARBINARY}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shareluntan.xuefeng.generator.Topic" useGeneratedKeys="true">
     insert into topic
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idUser != null">
@@ -104,7 +99,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.shareluntan.xuefeng.generator.Topic">
     update topic
     <set>
       <if test="idUser != null">
@@ -128,7 +124,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shareluntan.xuefeng.generator.TopicWithBLOBs">
+
+  <update id="updateByPrimaryKey" parameterType="com.shareluntan.xuefeng.generator.Topic">
     update topic
     set id_user = #{idUser,jdbcType=INTEGER},
       category = #{category,jdbcType=VARCHAR},
@@ -138,14 +135,7 @@
       img = #{img,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shareluntan.xuefeng.generator.Topic">
-    update topic
-    set id_user = #{idUser,jdbcType=INTEGER},
-      category = #{category,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      created_date = #{createdDate,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 
   <!--topic表联结查询user表，写了发现没用
   <resultMap id="ResultMapTopicVO" type="com.shareluntan.xuefeng.model.TopicVO">

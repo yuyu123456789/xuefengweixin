@@ -4,14 +4,14 @@ package com.shareluntan.xuefeng.controller;
 
 import com.shareluntan.xuefeng.config.CustomException;
 import com.shareluntan.xuefeng.config.CustomExceptionType;
-import com.shareluntan.xuefeng.config.ResponseClass;
+import com.shareluntan.xuefeng.config.AjaxResponse;
+import com.shareluntan.xuefeng.generator.User;
 import com.shareluntan.xuefeng.service.UserLoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -22,25 +22,16 @@ public class UserController {
     UserLoginServiceImpl loginservice;
 
     @GetMapping("/login")
-    public String UserLogin(Integer id, String password, Model model, HttpSession session) {
+    public @ResponseBody AjaxResponse UserLogin(@RequestBody User user, HttpSession session) {
         System.out.println("用户登陆");
-        if (id == null || password == null || id.equals("") || password.equals("")) {
-            ResponseClass error1 = ResponseClass.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的账号或密码是null或者为空"));
-            model.addAttribute("code", error1.getCode());
-            model.addAttribute("message", error1.getMessage());
-            return "fail.html";
-        }
-        boolean login = loginservice.login(id, password);
-
-        if (!login) {
-            ResponseClass error1 = ResponseClass.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的账户或者密码错误"));
-            model.addAttribute("code", error1.getCode());
-            model.addAttribute("message", error1.getMessage());
-            return "fail.html";
+        Integer id = user.getId();
+        String password = user.getPassword();
+        if (!loginservice.login(id,password)) {
+            return AjaxResponse.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的账户或者密码错误"));
         }else {
-            session.setAttribute("userId", id);
-            session.setAttribute("password", password);
-            return "action.html";
+            session.setAttribute("userId",id);
+            session.setAttribute("password",password);
+            return AjaxResponse.success();
             }
 
 
@@ -50,7 +41,7 @@ public class UserController {
     public String UserRegister(String name, String password,String email,Model model) {
         System.out.println("用户注册");
         if (name == null || password == null || name.equals("") || password.equals("")) {
-            ResponseClass error2 = ResponseClass.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的用户名或密码是null或者为空"));
+            AjaxResponse error2 = AjaxResponse.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR, "您的用户名或密码是null或者为空"));
             model.addAttribute("code", error2.getCode());
             model.addAttribute("message", error2.getMessage());
             return "fail.html";

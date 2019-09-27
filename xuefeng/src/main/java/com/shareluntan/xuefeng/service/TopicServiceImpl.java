@@ -2,7 +2,7 @@ package com.shareluntan.xuefeng.service;
 
 import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.generator.TopicMapper;
-import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
+
 import com.shareluntan.xuefeng.model.TopicVO;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +29,13 @@ public class TopicServiceImpl implements TopicService{
 
     @Override
     public boolean addTopic(Integer userId,String category,String title,String content,byte[] img) {
-        TopicWithBLOBs topicWithBLOBs = new TopicWithBLOBs(userId,category,new java.sql.Date(new Date().getTime()),title,content,img);
+        Topic topicWithBLOBs = new Topic(userId,category,title,new java.sql.Date(new Date().getTime()),content,img);
         int insert = topicMapper.insert(topicWithBLOBs);
         return insert == 1 ? true : false;
     }
 
     @Override
-    public TopicWithBLOBs selectTopicByTopicId(Integer topicid) {
+    public Topic selectTopicByTopicId(Integer topicid) {
         return topicMapper.selectByPrimaryKey(topicid);
     }
 

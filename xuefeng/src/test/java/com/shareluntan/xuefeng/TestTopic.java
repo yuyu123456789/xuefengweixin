@@ -1,8 +1,8 @@
 package com.shareluntan.xuefeng;
 
 
+import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.generator.TopicMapper;
-import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
 import com.shareluntan.xuefeng.model.TopicVO;
 import com.shareluntan.xuefeng.service.TopicService;
 import org.dozer.Mapper;
@@ -51,14 +51,14 @@ public class TestTopic {
 
     @Test
     public void testaddtopic1(){
-        TopicWithBLOBs topicWithBLOBs = new TopicWithBLOBs(10000,"科技",new java.sql.Date(new Date().getTime()),"你的名字","你的名字",null);
-        int insert = topicMapper.insert(topicWithBLOBs);
+        Topic topic = new Topic(10000,"科技","你的名字",new java.sql.Date(new Date().getTime()),"你的名字",null);
+        int insert = topicMapper.insert(topic);
         System.out.println(insert);
     }
 
     @Test
     public void testaddtopic2(){
-        TopicWithBLOBs topicWithBLOBs = new TopicWithBLOBs(10000,"科技",new java.sql.Date(new Date().getTime()),"你的名字","你的名字",null);
+        Topic topic = new Topic(10000,"科技","你的名字",new java.sql.Date(new Date().getTime()),"你的名字",null);
         boolean b = topicService.addTopic(10000, "科技", "你的名字", "你的名字", null);
         System.out.println(b);
     }

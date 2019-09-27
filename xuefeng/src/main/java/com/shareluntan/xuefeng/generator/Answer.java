@@ -14,7 +14,7 @@ import java.util.Date;
 public class Answer implements Serializable {
     private Integer id;
 
-    private String img;
+    private byte[] img;
 
     private String content;
 
@@ -28,4 +28,13 @@ public class Answer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Answer(){}
+    public Answer(byte[] img, String content, Date createdDate, Boolean useful, Integer idTopic, Integer idUser) {
+        this.img = img;
+        this.content = content;
+        this.createdDate = createdDate;
+        this.useful = useful;
+        this.idTopic = idTopic;
+        this.idUser = idUser;
+    }
 }
