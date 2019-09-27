@@ -1,7 +1,6 @@
 package com.shareluntan.xuefeng.generator;
 
 import com.shareluntan.xuefeng.generator.Topic;
-import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
 import com.shareluntan.xuefeng.model.TopicVO;
 
 import java.util.List;
@@ -9,15 +8,15 @@ import java.util.List;
 public interface TopicMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(TopicWithBLOBs record);
+    int insert(Topic record);
 
-    int insertSelective(TopicWithBLOBs record);
+    int insertSelective(Topic record);
 
-    TopicWithBLOBs selectByPrimaryKey(Integer id);
+    Topic selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(TopicWithBLOBs record);
+    int updateByPrimaryKeySelective(Topic record);
 
-    int updateByPrimaryKeyWithBLOBs(TopicWithBLOBs record);
+    int updateByPrimaryKeyWithBLOBs(Topic record);
 
     int updateByPrimaryKey(Topic record);
 

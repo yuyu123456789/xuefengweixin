@@ -1,7 +1,7 @@
 package com.shareluntan.xuefeng.model;
 
 import com.shareluntan.xuefeng.generator.Topic;
-import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
+
 import lombok.Data;
 
 import java.util.Date;

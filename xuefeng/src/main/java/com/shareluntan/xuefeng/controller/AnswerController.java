@@ -2,7 +2,7 @@ package com.shareluntan.xuefeng.controller;
 
 
 import com.shareluntan.xuefeng.generator.AnswerMapper;
-import com.shareluntan.xuefeng.generator.TopicWithBLOBs;
+import com.shareluntan.xuefeng.generator.Topic;
 import com.shareluntan.xuefeng.model.AnswerVO;
 import com.shareluntan.xuefeng.service.AnswerService;
 import com.shareluntan.xuefeng.service.TopicService;
@@ -24,10 +24,10 @@ public class AnswerController {
      @RequestMapping("/answer/{topicid}")
      public String selectTopicAndAnswer(@PathVariable("topicid") Integer topicid, Model model){
          List<AnswerVO> answerVOS = answerService.selectAnswerByTopicId(topicid);
-         TopicWithBLOBs topicWithBLOBs = topicService.selectTopicByTopicId(topicid);
+         Topic topic = topicService.selectTopicByTopicId(topicid);
          String username = topicService.selectUsernameByTopicId(topicid);
          model.addAttribute("answer",answerVOS);
-         model.addAttribute("topic",topicWithBLOBs);
+         model.addAttribute("topic",topic);
          model.addAttribute("username",username);
          return "topiccontent.html";
      }
