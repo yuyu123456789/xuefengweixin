@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css"  href="/topicContent.css"/>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/insertAnswer.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn").click(insertAnswer);
+        })
+    </script>
+
+    <script th:inline="javascript">
+        var idUser = [[${session.userId}]];
+        var idTopic = [[${topic.id}]];
+        var answer =[[${answer}]]
+    </script>
+    <title>文章</title>
+</head>
+<body>
+<div class="container">
+    <div name="header" id="header" >
+        <h3 >
+            <span th:text="${topic.title}"></span>
+            <!--<div id="idUser" hidden="true" th:text="${session.userId}"></div>-->
+        </h3>
+    </div>
+
+    <div class="context" name="context" id="context"style="height: 300px;">
+        <span th:text="${topic.content}"></span>
+    </div>
+
+    <div class="tip" >
+        <div style="text-align: center;">论坛官方提示（必看）<br/></div>
+        <div style="margin-left: 10px;">1.文章版权归版主所有<br />2.回帖遵守规则，避免被罚</div>
+    </div>
+
+    <div class="answer">
+        <div th:each="answer:${answer}">
+            <div th:text="${answer.content}+${#dates.format(answer.createdDate, 'yyyy-MM-dd HH:mm')}+${answer.username}">
+            </div>
+        </div>
+    </div>
+
+    <div class="content" style="height: 50px;">
+        <textarea name="textarea"id="textarea"style=" height: 50px;width: 100%;margin: 1px 1px 1px 1px;">发表评论</textarea>
+    </div>
+
+    <div style="margin-top: 12px;">
+        <button name="btn" id="btn">回复</button>
+    </div>
+
+</div>
+
+</body>
+</html>

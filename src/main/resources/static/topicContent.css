@@ -1,0 +1,17 @@
+.tip{
+	background-color: aquamarine;
+}
+.content{
+	background-color: gainsboro;
+}
+.text{
+	margin-left: 2px;
+}
+.context{
+	background-color: #F5F5DC;
+}
+.answer{
+	height: 150px;
+	background-color: azure;
+}
+
